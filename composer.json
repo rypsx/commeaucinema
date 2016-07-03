@@ -1,0 +1,21 @@
+{
+    "name": "rypsx/commeaucinema",
+    "description": "A PHP tool to extract the cinema news from commeaucinema.com",
+    "keywords": ["commeaucinema", "tool", "php", "api"],
+    "homepage": "https://github.com/rypsx/commeaucinema",
+    "license": "MIT",
+    "require": {
+        "nesbot/carbon": "^1.21"
+    },
+    "authors": [
+        {
+            "name": "Rypsx Dev",
+            "email": "info@rypsx.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Rypsx\\": "src/"
+        }
+    }
+}
