@@ -17,7 +17,7 @@ class Commeaucinema
     public $date;
 
     /**
-     * @var mainUrl
+     * @var string
      */
     public $mainUrl = 'http://www.commeaucinema.com/rsspage.php?feed=';
 
@@ -39,11 +39,7 @@ class Commeaucinema
     CONST URL_INVALIDE = "Impossible d'obtenir les informations. Veuillez réessayer plus tard.";
 
     /**
-     * Instance de l'objet Infomaniak
-     * @param string $login
-     * @param string $passwd
-     * @param string $rate
-     * @param string $codec
+     * Instance de l'objet Commeaucinema
      * @return void
      */
     public function __construct()
