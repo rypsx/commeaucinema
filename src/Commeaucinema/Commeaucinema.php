@@ -70,15 +70,15 @@ class Commeaucinema
     }
 
     /**
-     * Méthode permettant d'obtenir les sorties cinéma de la semaine
+     * Formate et retourne les résultats
+     * @param  $string $type Le type de résultats voulus
      * @return void
      */
-    private function obtenirSemaine()
+    private function obtenirResultats($type)
     {
-        $xml = $this->mainUrl.'cine';
         $fiche = array();
         try {
-            $xml = simplexml_load_file($xml);
+            $xml = simplexml_load_file($this->mainUrl.$type);
             if (count($xml->channel->item) == 0) {
                 $this->erreur = self::URL_INVALIDE;
             }
@@ -93,10 +93,19 @@ class Commeaucinema
                     ]
                 );
             }
-            $this->semaine = $fiche;
+            return $fiche;
         } catch (Exception $e) {
             $this->erreur = $e->getMessage();
         }
+    }
+
+    /**
+     * Méthode permettant d'obtenir les sorties cinéma de la semaine
+     * @return void
+     */
+    private function obtenirSemaine()
+    {
+        return $this->semaine = $this->obtenirResultats('cine');
     }
 
     /**
@@ -105,28 +114,7 @@ class Commeaucinema
      */
     private function obtenirEnSalle()
     {
-        $xml = $this->mainUrl.'cineensalle';
-        $fiche = array();
-        try {
-            $xml = simplexml_load_file($xml);
-            if (count($xml->channel->item) == 0) {
-                $this->erreur = self::URL_INVALIDE;
-            }
-            foreach ($xml->channel->item as $numItem => $item) {
-                $fiche[] = new Cinema(
-                    [
-                        'titre'       => $item->title,
-                        'lien'        => $item->link,
-                        'categorie'   => $item->category,
-                        'description' => $item->description,
-                        'image'       => $item->enclosure['url'],
-                    ]
-                );
-            }
-            $this->enSalles = $fiche;
-        } catch (Exception $e) {
-            $this->erreur = $e->getMessage();
-        }
+        return $this->enSalles = $this->obtenirResultats('cineensalle');
     }
 
     /**
@@ -135,27 +123,6 @@ class Commeaucinema
      */
     private function obtenirAVenir()
     {
-        $xml = $this->mainUrl.'cineavenir';
-        $fiche = array();
-        try {
-            $xml = simplexml_load_file($xml);
-            if (count($xml->channel->item) == 0) {
-                $this->erreur = self::URL_INVALIDE;
-            }
-            foreach ($xml->channel->item as $numItem => $item) {
-                $fiche[] = new Cinema(
-                    [
-                        'titre'       => $item->title,
-                        'lien'        => $item->link,
-                        'categorie'   => $item->category,
-                        'description' => $item->description,
-                        'image'       => $item->enclosure['url'],
-                    ]
-                );
-            }
-            $this->aVenir = $fiche;
-        } catch (Exception $e) {
-            $this->erreur = $e->getMessage();
-        }
+        return $this->aVenir = $this->obtenirResultats('cineavenir');
     }
 }
