@@ -109,6 +109,9 @@ class Commeaucinema
         $fiche = array();
         try {
             $xml = simplexml_load_file($xml);
+            if (count($xml->channel->item) == 0) {
+                $this->erreur = self::URL_INVALIDE;
+            }
             foreach ($xml->channel->item as $numItem => $item) {
                 $fiche[] = new Cinema(
                     [
@@ -136,6 +139,9 @@ class Commeaucinema
         $fiche = array();
         try {
             $xml = simplexml_load_file($xml);
+            if (count($xml->channel->item) == 0) {
+                $this->erreur = self::URL_INVALIDE;
+            }
             foreach ($xml->channel->item as $numItem => $item) {
                 $fiche[] = new Cinema(
                     [
