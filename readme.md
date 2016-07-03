@@ -17,7 +17,6 @@ Ce package vous permet d'obtenir :
 
 ```php
 <?php
-
 	use Rypsx\Commeaucinema\Commeaucinema;
 
 	require __DIR__ . '/../vendor/autoload.php';
@@ -74,7 +73,6 @@ This package will get you :
 
 ```php
 <?php
-
 	use Rypsx\Commeaucinema\Commeaucinema;
 
 	require __DIR__ . '/../vendor/autoload.php';
@@ -107,6 +105,10 @@ Or by editing the `composer.json` file, such as:
     "require": {
       "rypsx/commeaucinema": "^1.x"
     }
+
+## Packagist
+
+[Packagist Repo URL](https://packagist.org/packages/rypsx/commeaucinema)
 
 ## License
 
