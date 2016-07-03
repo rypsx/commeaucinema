@@ -52,10 +52,13 @@ Ou en éditant le fichier `composer.json`, tel que :
  
 Merci de lire la licence en bas.
 
+### Version 1.1
+- Ajout de la bande annonce
+- Attention, la bande annonce n'est pas testée, car cela prend du temps. Je vous conseille de le faire, mais en JS
+
 ---
 
-## English Readme Version <a id="english"></a> 
--------
+## English Version <a id="english"></a> 
 
 # API PHP commeaucinema.com
 
@@ -105,6 +108,10 @@ Or by editing the `composer.json` file, such as:
     "require": {
       "rypsx/commeaucinema": "^1.x"
     }
+
+### Version 1.1
+- Adding trailer
+- Please note that the trailer is not tested, because it takes time. I advise you to do it, but in JS
 
 ## Packagist
 

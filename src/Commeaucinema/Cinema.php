@@ -7,6 +7,11 @@ class Cinema {
     /**
      * @var string
      */
+    public $erreur = [];
+
+    /**
+     * @var string
+     */
     public  $titre;
 
     /**
@@ -29,11 +34,17 @@ class Cinema {
      */
     public $image;
 
+    /**
+     * @var string
+     */
+    public $ba;
+
     CONST TITRE_INVALIDE = "Le titre est invalide";
     CONST LIEN_INVALIDE  = "Le lien est invalide";
     CONST CAT_INVALIDE	 = "La catégorie est invalide";
     CONST DESC_INVALIDE  = "La description est invalide";
     CONST IMAGE_INVALIDE = "L'image est invalide";
+    CONST BA_INVALIDE    = "La bande annonce est invalide";
 
     /**
      * Construction de l'objet Status
@@ -44,6 +55,18 @@ class Cinema {
         if (!empty($valeurs)) {
             $this->rechercheMethode($valeurs);
         }
+    }
+
+    /**
+     * Permettre la transformation des caractères spéciaux et des simples quotes en espace
+     * @param  string $string
+     * @return string
+     */
+    private function cleanString($string) {
+        $string = strip_tags($string);
+        $string = preg_replace("/\'/","",$string);
+        $string = strtolower(preg_replace('~&([a-z]{1,2})(acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i', '$1', htmlentities($string, ENT_QUOTES, 'UTF-8')));
+        return trim($string);
     }
 
     /**
@@ -68,7 +91,7 @@ class Cinema {
     public function setTitre($titre)
     {
         if (empty($titre)) {
-        	throw new Exception(self::TITRE_INVALIDE);
+        	$this->erreur[] = self::TITRE_INVALIDE;
         } else {
             $this->titre = (string) $titre;
         }
@@ -81,7 +104,7 @@ class Cinema {
     public function setLien($lien)
     {
         if (empty($lien)) {
-        	throw new Exception(self::LIEN_INVALIDE);
+        	$this->erreur[] = self::LIEN_INVALIDE;
         } else {
             $this->lien = (string) $lien;
         }
@@ -94,7 +117,7 @@ class Cinema {
     public function setCategorie($categorie)
     {
         if (empty($categorie)) {
-        	throw new Exception(self::CAT_INVALIDE);
+        	$this->erreur[] = self::CAT_INVALIDE;
         } else {
             $this->categorie = (string) $categorie;
         }
@@ -107,7 +130,7 @@ class Cinema {
     public function setDescription($description)
     {
         if (empty($description)) {
-        	throw new Exception(self::DESC_INVALIDE);
+        	$this->erreur[] = self::DESC_INVALIDE;
         } else {
             $this->description = (string) explode(" | ", strip_tags($description))[0];
         }
@@ -120,9 +143,29 @@ class Cinema {
     public function setImage($image)
     {
         if (empty($image)) {
-        	throw new Exception(self::IMAGE_INVALIDE);
+        	$this->erreur[] = self::IMAGE_INVALIDE;
         } else {
             $this->image = (string) $image;
         }
+    }
+
+    /**
+     * Assigner la bande annonce
+     * @param string $titre
+     */
+    public function setBa($titre)
+    {
+        $ba = str_replace(' ', '', strtolower($titre));
+        $ba = $this->cleanString($ba);
+        $ba = 'http://videos.commeaucinema.com/m4v/'.$ba.'_fa.m4v';
+        $this->ba = (string) $ba;
+
+        // Remove the part below, because execution takes 6 seconds
+        /*$headers = @get_headers($ba);
+        if (strpos($headers[0], '200') === false) {
+            $this->erreur[] = self::BA_INVALIDE;
+        } else {
+            $this->ba = (string) $ba;
+        }*/
     }
 }

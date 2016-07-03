@@ -90,6 +90,7 @@ class Commeaucinema
                         'categorie'   => $item->category,
                         'description' => $item->description,
                         'image'       => $item->enclosure['url'],
+                        'ba'          => $item->title,
                     ]
                 );
             }
