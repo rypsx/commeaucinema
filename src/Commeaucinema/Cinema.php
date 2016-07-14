@@ -155,7 +155,7 @@ class Cinema {
      */
     public function setBa($titre)
     {
-        $ba = str_replace(' ', '', strtolower($titre));
+        $ba = str_replace(' ', '', strtolower((string) $titre));
         $ba = $this->cleanString($ba);
         $ba = 'http://videos.commeaucinema.com/m4v/'.$ba.'_fa.m4v';
         $this->ba = (string) $ba;
