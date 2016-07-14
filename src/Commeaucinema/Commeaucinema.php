@@ -95,7 +95,7 @@ class Commeaucinema
                 );
             }
             return $fiche;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->erreur = $e->getMessage();
         }
     }
