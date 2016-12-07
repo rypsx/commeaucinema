@@ -85,6 +85,7 @@ class Commeaucinema
             foreach ($xml->channel->item as $numItem => $item) {
                 $fiche[] = new Cinema(
                     [
+                        /*'id'          => explode(',', $item->link)[1],*/
                         'titre'       => $item->title,
                         'lien'        => $item->link,
                         'categorie'   => $item->category,

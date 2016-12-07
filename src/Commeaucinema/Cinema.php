@@ -5,9 +5,14 @@ namespace Rypsx\Commeaucinema;
 class Cinema {
 
     /**
-     * @var string
+     * @var array
      */
     public $erreur = [];
+
+    /**
+     * @var int
+     */
+    // public  $id;
 
     /**
      * @var string
@@ -83,6 +88,21 @@ class Cinema {
             }
         }
     }
+
+    /**
+     * Assigner l'ID
+     * @param string $lien
+     */
+    /*
+    public function setId($lien)
+    {
+        if (empty($lien)) {
+            $this->erreur[] = self::LIEN_INVALIDE;
+        } else {
+            $this->id = (int) $lien;
+        }
+    }
+    */
 
     /**
      * Assigner le titre
