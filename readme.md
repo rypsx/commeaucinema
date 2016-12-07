@@ -1,7 +1,7 @@
 commeaucinema.com PHP API
 =======================
 
-[![Latest Stable Version](https://poser.pugx.org/rypsx/commeaucinema/v/stable?format=flat-square)](https://packagist.org/packages/rypsx/commeaucinema) [![Total Downloads](https://poser.pugx.org/rypsx/commeaucinema/downloads?format=flat-square)](https://packagist.org/packages/rypsx/commeaucinema) [![License](https://poser.pugx.org/rypsx/commeaucinema/license?format=flat-square)](https://packagist.org/packages/rypsx/commeaucinema) [![Monthly Downloads](https://poser.pugx.org/rypsx/commeaucinema/d/monthly?format=flat-square)](https://packagist.org/packages/rypsx/commeaucinema)
+[![Latest Stable Version](https://poser.pugx.org/rypsx/commeaucinema/v/stable?format=flat-square)](https://packagist.org/packages/rypsx/commeaucinema) [![Total Downloads](https://poser.pugx.org/rypsx/commeaucinema/downloads?format=flat-square)](https://packagist.org/packages/rypsx/commeaucinema) [![License](https://poser.pugx.org/rypsx/commeaucinema/license?format=flat-square)](https://packagist.org/packages/rypsx/commeaucinema) [![Monthly Downloads](https://poser.pugx.org/rypsx/commeaucinema/d/monthly?format=flat-square)](https://packagist.org/packages/rypsx/commeaucinema)[![SensioLabsInsight](https://insight.sensiolabs.com/projects/219dc895-5a91-419d-97b1-5a8aebe5f498/mini.png)](https://insight.sensiolabs.com/projects/219dc895-5a91-419d-97b1-5a8aebe5f498)
 
 ### [Access to English version](#english)
 
