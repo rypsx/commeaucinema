@@ -15,6 +15,20 @@ Ce package vous permet d'obtenir :
 2. Les films actuellement en salle
 3. La liste des films qui sortiront prochainement
 
+Les objets que vous obtenez :
+
+```php
+	object(Rypsx\Commeaucinema\Cinema)[4]
+		public 'erreur' => 
+		array (size=0)
+		  ...
+		public 'titre' => string 'Belle et Sébastien 3, le dernier chapitre' (length=42)
+		public 'lien' => string 'http://www.commeaucinema.com/film/belle-et-sebastien-3-le-dernier-chapitre,361544' (length=81)
+		public 'description' => string 'Aventure Film à partir de 6/8 ansDurée : 1h37' (length=47)
+		public 'image' => string 'http://www.commeaucinema.com/images/news/133_361544.jpg' (length=55)
+		public 'ba' => string '"http://videos.commeaucinema.com/m4v/belleetsebastien3_fa.m4v"' (length=62)
+```
+
 ## Utilisation
 
 ```php
@@ -29,7 +43,7 @@ Ce package vous permet d'obtenir :
 	    print $e->getMessage();
 	}
 
-	var_dump($cac);
+	echo '<pre>' . var_export($cac, true) . '</pre>';
 ?>
 ```
 
@@ -49,14 +63,14 @@ Ou en éditant le fichier `composer.json`, tel que :
 
     {
     "require": {
-      "rypsx/commeaucinema": "^1.x"
+      "rypsx/commeaucinema": "^2.x"
     }
  
-Merci de lire la licence en bas.
 
-### Version 1.1
-- Ajout de la bande annonce
-- Attention, la bande annonce n'est pas testée, car cela prend du temps. Je vous conseille de le faire, mais en JS
+### Version 2.0
+- Possibilité d'avoir la bande annonce de 2 manières :
+	- 1e : Pas fiable, méthode de manipulation de lien (Exec time : 500ms)
+	- 2e : Fiable, parse du site en récupérant la BA (Exec time : Variable entre 3.5s-6.5s)
 
 ---
 
@@ -74,6 +88,20 @@ This package will get you :
 2. Films now showing
 3. The list of films to be released soon
 
+Objects you get :
+
+```php
+	object(Rypsx\Commeaucinema\Cinema)[4]
+		public 'erreur' => 
+		array (size=0)
+		  ...
+		public 'titre' => string 'Belle et Sébastien 3, le dernier chapitre' (length=42)
+		public 'lien' => string 'http://www.commeaucinema.com/film/belle-et-sebastien-3-le-dernier-chapitre,361544' (length=81)
+		public 'description' => string 'Aventure Film à partir de 6/8 ansDurée : 1h37' (length=47)
+		public 'image' => string 'http://www.commeaucinema.com/images/news/133_361544.jpg' (length=55)
+		public 'ba' => string '"http://videos.commeaucinema.com/m4v/belleetsebastien3_fa.m4v"' (length=62)
+```
+
 ## Usage
 
 ```php
@@ -88,7 +116,7 @@ This package will get you :
 	    print $e->getMessage();
 	}
 
-	var_dump($cac);
+	echo '<pre>' . var_export($cac, true) . '</pre>';
 ?>
 ```
 
@@ -108,12 +136,13 @@ Or by editing the `composer.json` file, such as:
 
     {
     "require": {
-      "rypsx/commeaucinema": "^1.x"
+      "rypsx/commeaucinema": "^2.x"
     }
 
-### Version 1.1
-- Adding trailer
-- Please note that the trailer is not tested, because it takes time. I advise you to do it, but in JS
+### Version 2.0
+- Possibility of having the trailer of 2 ways :
+	- 1e : Not reliable, link manipulation method (Exec time : 500ms)
+	- 2e : Reliable, parse of the site by recovering the trailer (Exec time : Variable btw 3.5s-6.5s)
 
 ## Packagist
 
