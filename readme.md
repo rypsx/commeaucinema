@@ -19,12 +19,12 @@ Les objets que vous obtenez :
 
 ```php
 object(Rypsx\Commeaucinema\Cinema)[4]
-	public 'erreur' => array (size=0)
-	public 'titre' => string (length=42)
-	public 'lien' => string (length=81)
-	public 'description' => string (length=47)
-	public 'image' => string (length=55)
-	public 'ba' => string (length=62)
+ public 'erreur' => array (size=0)
+ public 'titre' => string (length=42)
+ public 'lien' => string (length=81)
+ public 'description' => string (length=47)
+ public 'image' => string (length=55)
+ public 'ba' => string (length=62)
 ```
 
 ## Utilisation
@@ -87,15 +87,14 @@ This package will get you :
 Objects you get :
 ```php
 object(Rypsx\Commeaucinema\Cinema)[4]
-	public 'erreur' => 
-	array (size=0)
-	  ...
-	public 'titre' => string 'Belle et Sébastien 3, le dernier chapitre' (length=42)
-	public 'lien' => string 'http://www.commeaucinema.com/film/belle-et-sebastien-3-le-dernier-chapitre,361544' (length=81)
-	public 'description' => string 'Aventure Film à partir de 6/8 ansDurée : 1h37' (length=47)
-	public 'image' => string 'http://www.commeaucinema.com/images/news/133_361544.jpg' (length=55)
-	public 'ba' => string '"http://videos.commeaucinema.com/m4v/belleetsebastien3_fa.m4v"' (length=62)
+ public 'erreur' => array (size=0)
+ public 'titre' => string (length=42)
+ public 'lien' => string (length=81)
+ public 'description' => string (length=47)
+ public 'image' => string (length=55)
+ public 'ba' => string (length=62)
 ```
+
 ## Usage
 
 ```php
