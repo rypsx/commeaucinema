@@ -164,7 +164,7 @@ class Cinema {
         $curl = Fonctions::curl($ba);
         $html = '#<source src=(.*?) type="video/mp4"#';
         preg_match($html, $curl, $recup);
-        $this->ba = (string) isset($recup[1]) ? $recup[1] : null;
+        $this->ba = (string) isset($recup[1]) ? trim($recup[1],"\"") : null;
         
     }
 }
