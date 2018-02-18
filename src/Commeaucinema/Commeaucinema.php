@@ -17,11 +17,6 @@ class Commeaucinema
     public $date;
 
     /**
-     * @var string
-     */
-    public $mainUrl = 'http://www.commeaucinema.com/rsspage.php?feed=';
-
-    /**
      * @var Object
      */
     public $semaine;
@@ -78,17 +73,16 @@ class Commeaucinema
     {
         $fiche = array();
         try {
-            $xml = simplexml_load_file($this->mainUrl.$type);
+            $xml = simplexml_load_file('http://www.commeaucinema.com/rsspage.php?feed='.$type);
             if (count($xml->channel->item) == 0) {
                 $this->erreur = self::URL_INVALIDE;
             }
             foreach ($xml->channel->item as $numItem => $item) {
                 $fiche[] = new Cinema(
                     [
-                        /*'id'          => explode(',', $item->link)[1],*/
+                        'id'          => $item->link,
                         'titre'       => $item->title,
                         'lien'        => $item->link,
-                        'categorie'   => $item->category,
                         'description' => $item->description,
                         'image'       => $item->enclosure['url'],
                         'ba'          => $item->title,

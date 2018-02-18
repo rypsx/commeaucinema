@@ -2,6 +2,8 @@
 
 namespace Rypsx\Commeaucinema;
 
+use Rypsx\Fonctions;
+
 class Cinema {
 
     /**
@@ -12,22 +14,17 @@ class Cinema {
     /**
      * @var int
      */
-    // public  $id;
+    public $id;
 
     /**
      * @var string
      */
-    public  $titre;
+    public $titre;
 
     /**
      * @var string
      */
     public $lien;
-
-    /**
-     * @var string
-     */
-    public $categorie;
 
     /**
      * @var string
@@ -45,8 +42,7 @@ class Cinema {
     public $ba;
 
     CONST TITRE_INVALIDE = "Le titre est invalide";
-    CONST LIEN_INVALIDE  = "Le lien est invalide";
-    CONST CAT_INVALIDE	 = "La catégorie est invalide";
+    CONST LIEN_INVALIDE  = "Le lien est invalide";    
     CONST DESC_INVALIDE  = "La description est invalide";
     CONST IMAGE_INVALIDE = "L'image est invalide";
     CONST BA_INVALIDE    = "La bande annonce est invalide";
@@ -60,18 +56,6 @@ class Cinema {
         if (!empty($valeurs)) {
             $this->rechercheMethode($valeurs);
         }
-    }
-
-    /**
-     * Permettre la transformation des caractères spéciaux et des simples quotes en espace
-     * @param  string $string
-     * @return string
-     */
-    private function cleanString($string) {
-        $string = strip_tags($string);
-        $string = preg_replace("/\'/","",$string);
-        $string = strtolower(preg_replace('~&([a-z]{1,2})(acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i', '$1', htmlentities($string, ENT_QUOTES, 'UTF-8')));
-        return trim($string);
     }
 
     /**
@@ -93,16 +77,11 @@ class Cinema {
      * Assigner l'ID
      * @param string $lien
      */
-    /*
     public function setId($lien)
     {
-        if (empty($lien)) {
-            $this->erreur[] = self::LIEN_INVALIDE;
-        } else {
-            $this->id = (int) $lien;
-        }
+        $this->id = empty($lien) ? null : (int) explode(',', $lien)[1];
     }
-    */
+    
 
     /**
      * Assigner le titre
@@ -127,19 +106,6 @@ class Cinema {
         	$this->erreur[] = self::LIEN_INVALIDE;
         } else {
             $this->lien = (string) $lien;
-        }
-    }
-
-    /**
-     * Assigner la categorie
-     * @param string $categorie
-     */
-    public function setCategorie($categorie)
-    {
-        if (empty($categorie)) {
-        	$this->erreur[] = self::CAT_INVALIDE;
-        } else {
-            $this->categorie = (string) $categorie;
         }
     }
 
@@ -175,17 +141,47 @@ class Cinema {
      */
     public function setBa($titre)
     {
+        /**
+         * Exec time : 500ms
+         */
         $ba = str_replace(' ', '', strtolower((string) $titre));
-        $ba = $this->cleanString($ba);
-        $ba = 'http://videos.commeaucinema.com/m4v/'.$ba.'_fa.m4v';
-        $this->ba = (string) $ba;
+        $ba = Fonctions::cleanString($ba);
+        if (empty($ba)) {
+            $this->erreur[] = self::BA_INVALIDE;
+            $this->ba = null;
+        } else {
+            $ba = 'http://videos.commeaucinema.com/m4v/'.$ba.'_fa.m4v';
+            $this->ba = (string) $ba;
+        }
 
-        // Remove the part below, because execution takes 6 seconds
-        /*$headers = @get_headers($ba);
+        /**
+         * Exec time : 0.5s + 3.5s
+         * Remove the part below, because of duration of execution
+         */
+        /*
+        $headers = @get_headers($ba);
         if (strpos($headers[0], '200') === false) {
             $this->erreur[] = self::BA_INVALIDE;
         } else {
             $this->ba = (string) $ba;
-        }*/
+        }
+        */
+
+        /**
+         * Exec time : 11s
+         * 
+         * Mise en place d'une nouvelle idée afin de récupérer les BA existantes
+         * Cependant, cette méthode est longue, à cause de l'appel à CURL
+         *
+         * Le paramètre à prendre en compte n'est pas le titre mais le lien,
+         * à modifier lors de l'appel, dans la fonction obtenirResultats()
+         */
+        /*
+        $ba = str_replace('film', 'bandes-annonces', strtolower((string) $titre));
+        $curl = Fonctions::curl($ba);
+        $html = '#<source src=(.*?) type="video/mp4"#';
+        preg_match($html, $curl, $recup);
+        $this->ba = (string) isset($recup[1]) ? $recup[1] : null;
+        */
     }
 }
