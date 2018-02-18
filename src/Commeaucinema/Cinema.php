@@ -12,11 +12,6 @@ class Cinema {
     public $erreur = [];
 
     /**
-     * @var int
-     */
-    public $id;
-
-    /**
      * @var string
      */
     public $titre;
@@ -48,7 +43,7 @@ class Cinema {
     CONST BA_INVALIDE    = "La bande annonce est invalide";
 
     /**
-     * Construction de l'objet Status
+     * Construction de l'objet
      * @param array $valeurs
      */
     public function __construct($valeurs = [])
@@ -71,17 +66,7 @@ class Cinema {
                 $this->$methode($valeur);
             }
         }
-    }
-
-    /**
-     * Assigner l'ID
-     * @param string $lien
-     */
-    public function setId($lien)
-    {
-        $this->id = empty($lien) ? null : (int) explode(',', $lien)[1];
-    }
-    
+    }    
 
     /**
      * Assigner le titre
@@ -137,14 +122,17 @@ class Cinema {
 
     /**
      * Assigner la bande annonce
-     * @param string $titre
+     * @param string $param
+     * Pour choisir la 1e méthode (0.5s-3.5s, ALEATOIRE)    -> indiquer le titre en paramètre
+     * Pour choisir la 2e méthode (3.5s, FIABLE et PRECISE) -> indiquer le lien en paramètre
      */
-    public function setBa($titre)
+    public function setBa($param)
     {
         /**
          * Exec time : 500ms
          */
-        $ba = str_replace(' ', '', strtolower((string) $titre));
+        /*
+        $ba = str_replace(' ', '', strtolower((string) $param));
         $ba = Fonctions::cleanString($ba);
         if (empty($ba)) {
             $this->erreur[] = self::BA_INVALIDE;
@@ -153,6 +141,7 @@ class Cinema {
             $ba = 'http://videos.commeaucinema.com/m4v/'.$ba.'_fa.m4v';
             $this->ba = (string) $ba;
         }
+        */
 
         /**
          * Exec time : 0.5s + 3.5s
@@ -168,20 +157,14 @@ class Cinema {
         */
 
         /**
-         * Exec time : 11s
-         * 
-         * Mise en place d'une nouvelle idée afin de récupérer les BA existantes
-         * Cependant, cette méthode est longue, à cause de l'appel à CURL
-         *
-         * Le paramètre à prendre en compte n'est pas le titre mais le lien,
-         * à modifier lors de l'appel, dans la fonction obtenirResultats()
-         */
-        /*
-        $ba = str_replace('film', 'bandes-annonces', strtolower((string) $titre));
+         * Exec time : Variable : 3.5s-6.5s
+         * Meilleur méthode
+         */        
+        $ba = str_replace('film', 'bandes-annonces', strtolower((string) $param));
         $curl = Fonctions::curl($ba);
         $html = '#<source src=(.*?) type="video/mp4"#';
         preg_match($html, $curl, $recup);
         $this->ba = (string) isset($recup[1]) ? $recup[1] : null;
-        */
+        
     }
 }

@@ -17,6 +17,11 @@ class Commeaucinema
     public $date;
 
     /**
+     * @var array
+     */
+    private $fiches = [];
+
+    /**
      * @var Object
      */
     public $semaine;
@@ -71,25 +76,32 @@ class Commeaucinema
      */
     private function obtenirResultats($type)
     {
-        $fiche = array();
+        $return = array();
         try {
             $xml = simplexml_load_file('http://www.commeaucinema.com/rsspage.php?feed='.$type);
             if (count($xml->channel->item) == 0) {
                 $this->erreur = self::URL_INVALIDE;
             }
             foreach ($xml->channel->item as $numItem => $item) {
-                $fiche[] = new Cinema(
-                    [
-                        'id'          => $item->link,
-                        'titre'       => $item->title,
-                        'lien'        => $item->link,
-                        'description' => $item->description,
-                        'image'       => $item->enclosure['url'],
-                        'ba'          => $item->title,
-                    ]
-                );
+                $id = empty($item->link) ? null : (int) explode(',', $item->link)[1];
+                if (!is_null($id)) {
+
+                    # Permet de réduire la durée d'exécution en enregistrant les fiches déjà parsées
+                    if (!array_key_exists($id, $this->fiches)) {
+                        $this->fiches[$id] = new Cinema(
+                            [
+                                'titre'       => $item->title,
+                                'lien'        => $item->link,
+                                'description' => $item->description,
+                                'image'       => $item->enclosure['url'],
+                                'ba'          => $item->link, // ou $item->title pour une méthode imprécise mais rapide
+                            ]
+                        );
+                    }
+                    $return[] = $this->fiches[$id];
+                }
             }
-            return $fiche;
+            return $return;
         } catch (\Exception $e) {
             $this->erreur = $e->getMessage();
         }
