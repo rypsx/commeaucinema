@@ -17,22 +17,16 @@ Ce package vous permet d'obtenir :
 
 Les objets que vous obtenez :
 
-```php
 	object(Rypsx\Commeaucinema\Cinema)[4]
-		public 'erreur' => 
-		array (size=0)
-		  ...
-		public 'titre' => string 'Belle et Sébastien 3, le dernier chapitre' (length=42)
-		public 'lien' => string 'http://www.commeaucinema.com/film/belle-et-sebastien-3-le-dernier-chapitre,361544' (length=81)
-		public 'description' => string 'Aventure Film à partir de 6/8 ansDurée : 1h37' (length=47)
-		public 'image' => string 'http://www.commeaucinema.com/images/news/133_361544.jpg' (length=55)
-		public 'ba' => string '"http://videos.commeaucinema.com/m4v/belleetsebastien3_fa.m4v"' (length=62)
-```
+		public 'erreur' => array (size=0)
+		public 'titre' => string (length=42)
+		public 'lien' => string (length=81)
+		public 'description' => string (length=47)
+		public 'image' => string (length=55)
+		public 'ba' => string (length=62)
 
 ## Utilisation
 
-```php
-<?php
 	use Rypsx\Commeaucinema\Commeaucinema;
 
 	require __DIR__ . '/../vendor/autoload.php';
@@ -44,8 +38,6 @@ Les objets que vous obtenez :
 	}
 
 	echo '<pre>' . var_export($cac, true) . '</pre>';
-?>
-```
 
 ## Requis
 
@@ -90,7 +82,6 @@ This package will get you :
 
 Objects you get :
 
-```php
 	object(Rypsx\Commeaucinema\Cinema)[4]
 		public 'erreur' => 
 		array (size=0)
@@ -100,12 +91,9 @@ Objects you get :
 		public 'description' => string 'Aventure Film à partir de 6/8 ansDurée : 1h37' (length=47)
 		public 'image' => string 'http://www.commeaucinema.com/images/news/133_361544.jpg' (length=55)
 		public 'ba' => string '"http://videos.commeaucinema.com/m4v/belleetsebastien3_fa.m4v"' (length=62)
-```
 
 ## Usage
 
-```php
-<?php
 	use Rypsx\Commeaucinema\Commeaucinema;
 
 	require __DIR__ . '/../vendor/autoload.php';
@@ -117,8 +105,6 @@ Objects you get :
 	}
 
 	echo '<pre>' . var_export($cac, true) . '</pre>';
-?>
-```
 
 ## Required
 
